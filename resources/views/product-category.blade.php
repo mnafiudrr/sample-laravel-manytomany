@@ -14,8 +14,16 @@
     <body>
         @foreach ($products as $product)
             {{$product->nama}} :
-            @foreach ($product->categories as $productCategory)
-                {{$productCategory->nama}}                
+            @foreach ($product->categories as $index => $productCategory)
+                {{$index!=0?',  ':'  '}}{{$productCategory->nama}}                
+            @endforeach
+            <br>
+        @endforeach
+        <br><br><br>
+        @foreach ($categories as $category)
+            {{$category->nama}} :
+            @foreach ($category->products as $index => $productCategory)
+                {{$index!=0?',  ':'  '}}{{$productCategory->nama}}    
             @endforeach
             <br>
         @endforeach
@@ -27,7 +35,7 @@
                     <option value="{{$product->id}}">{{$product->nama}}</option>
                 @endforeach
             </select>
-            @foreach ($categories as $category)
+            @foreach ($categories as $index => $category)
                 <br>
                 <span>
                     <input type="checkbox" name="category_id[]" value="{{$category->id}}" id="">
